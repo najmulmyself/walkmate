@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../controller/darkthemePrefs.dart';
 
@@ -8,9 +9,16 @@ class DarkModeProvider extends ChangeNotifier {
 
   bool get isModeDark => _isDark;
 
-  void setMode(bool mode) {
-    _isDark = mode;
-    darkThemePrefs.setDarkTheme(mode);
+  Future<void> getMode() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _isDark = prefs.getBool('mode') ?? false;
+    notifyListeners();
+  }
+
+  Future<void> setMode(bool newValue) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _isDark = newValue;
+    await prefs.setBool('mode', newValue);
     notifyListeners();
   }
 }

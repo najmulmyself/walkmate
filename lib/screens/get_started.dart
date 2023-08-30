@@ -30,7 +30,7 @@ class GetStarted extends StatelessWidget {
                     darkProvider.setMode(!darkProvider.isModeDark);
                   },
                   child: Icon(
-                    darkProvider.darkThemePrefs.getTheme() == true
+                    darkProvider.isModeDark
                         ? Icons.light_mode
                         : Icons.dark_mode,
                     size: 25,

@@ -31,9 +31,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final darkModeProvider = Provider.of<DarkModeProvider>(context);
+    final darkModeProvider = Provider.of<DarkModeProvider>(
+      context,
+    ).getMode();
+    final isDarkMode = Provider.of<DarkModeProvider>(context).isModeDark;
     return MaterialApp(
-      theme: darkModeProvider.isModeDark ? ThemeData.dark() : ThemeData.light(),
+      theme: isDarkMode ? ThemeData.dark() : ThemeData.light(),
       debugShowCheckedModeBanner: false,
       title: 'WalkMate',
       home: const GetStarted(),
