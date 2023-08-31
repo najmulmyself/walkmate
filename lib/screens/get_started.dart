@@ -73,7 +73,7 @@ class GetStarted extends StatelessWidget {
                                       BorderRadius.all(Radius.circular(30))),
                               backgroundColor: kPrimaryColor),
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 CupertinoPageRoute(
                                     builder: (context) =>
