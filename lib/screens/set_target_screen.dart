@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:walkmate/provider/darkModeProvider.dart';
 
 import '../utils/const.dart';
 
-class SetTargetPage extends StatelessWidget {
+class SetTargetPage extends StatefulWidget {
   const SetTargetPage({super.key});
 
+  @override
+  State<SetTargetPage> createState() => _SetTargetPageState();
+}
+
+class _SetTargetPageState extends State<SetTargetPage> {
+  double value = 0.6;
   @override
   Widget build(BuildContext context) {
     return Consumer<DarkModeProvider>(
@@ -60,21 +68,23 @@ class SetTargetPage extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: Text(
                         "Set your walking goal now!",
-                        style: darkProvider.isModeDark
-                            ? kFontSizeBigStyle
-                            : kFontSizeBigStyle.copyWith(
-                                // color: kPrimaryColor,
-                                ),
+                        // style: darkProvider.isModeDark
+                        //     ? kFontSizeBigStyle
+                        //     : kFontSizeBigStyle.copyWith(
+                        //         // color: kPrimaryColor,
+                        //         ),
+                        style: GoogleFonts.plusJakartaSans(
+                            textStyle: kFontSizeBigStyle),
                       ),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: Text(
                         "Your determination and effort is\ninspiring. Keep pushing yourself to reach new heights.",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.manrope(
                           textStyle: const TextStyle(),
                           color: Colors.white,
                           fontSize: 18,
@@ -83,7 +93,27 @@ class SetTargetPage extends StatelessWidget {
                     )
                   ],
                 ),
-              )
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SfSlider(
+                
+                enableTooltip: true,
+                shouldAlwaysShowTooltip: true,
+                value: value,
+                interval: 0.5,
+                thumbIcon: Image.asset(
+                  "assets/images/Slider.png",
+                  height: 120,
+                  width: 120,
+                ),
+                onChanged: (val) {
+                  setState(() {
+                    value = val;
+                  });
+                },
+              ),
             ],
           ),
         );
