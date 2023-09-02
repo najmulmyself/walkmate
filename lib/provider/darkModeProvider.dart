@@ -21,4 +21,13 @@ class DarkModeProvider extends ChangeNotifier {
     await prefs.setBool('mode', newValue);
     notifyListeners();
   }
+
+  double _sliderValue = 100;
+
+  double get sliderValue => _sliderValue;
+
+  getSliderValue(double value) {
+    _sliderValue = value;
+    notifyListeners();
+  }
 }

@@ -6,15 +6,9 @@ import 'package:walkmate/provider/darkModeProvider.dart';
 
 import '../utils/const.dart';
 
-class SetTargetPage extends StatefulWidget {
+class SetTargetPage extends StatelessWidget {
   const SetTargetPage({super.key});
 
-  @override
-  State<SetTargetPage> createState() => _SetTargetPageState();
-}
-
-class _SetTargetPageState extends State<SetTargetPage> {
-  double value = 0.6;
   @override
   Widget build(BuildContext context) {
     return Consumer<DarkModeProvider>(
@@ -97,21 +91,22 @@ class _SetTargetPageState extends State<SetTargetPage> {
               const SizedBox(
                 height: 30,
               ),
+              Text(
+                "Add Your Target".toUpperCase(),
+                style: GoogleFonts.manrope(textStyle: kFontCapitalStyle),
+              ),
               SfSlider(
-                
                 enableTooltip: true,
                 shouldAlwaysShowTooltip: true,
-                value: value,
-                interval: 0.5,
-                thumbIcon: Image.asset(
-                  "assets/images/Slider.png",
-                  height: 120,
-                  width: 120,
-                ),
+                value: darkProvider.sliderValue,
+                interval: 0.2,
+                min: 0,
+                max: 10000,
+                thumbIcon: Image.asset("assets/images/Slider.png"),
+                showDividers: true,
+                dividerShape: const SfDividerShape(),
                 onChanged: (val) {
-                  setState(() {
-                    value = val;
-                  });
+                  darkProvider.getSliderValue(val);
                 },
               ),
             ],
