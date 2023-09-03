@@ -61,6 +61,7 @@ class SetTargetPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: Text(
+                        
                         "Set your walking goal now!",
                         // style: darkProvider.isModeDark
                         //     ? kFontSizeBigStyle
