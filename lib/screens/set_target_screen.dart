@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -93,7 +94,12 @@ class SetTargetPage extends StatelessWidget {
               ),
               Text(
                 "Add Your Target".toUpperCase(),
-                style: GoogleFonts.manrope(textStyle: kFontCapitalStyle),
+                style: darkProvider.isModeDark
+                    ? GoogleFonts.manrope(textStyle: kFontCapitalStyle)
+                    : GoogleFonts.manrope(
+                        textStyle: kFontCapitalStyle,
+                        color: kPrimaryColor,
+                      ),
               ),
               // SfSlider(
               //   enableTooltip: true,
@@ -111,21 +117,67 @@ class SetTargetPage extends StatelessWidget {
               // ),
 
               SliderTheme(
-                data: SliderThemeData(
-                 
-                ),
+                data: const SliderThemeData(),
                 child: Slider(
-                    divisions: 10,
-                    thumbColor: kPrimaryColor,
-                    activeColor: kPrimaryColor,
-                    inactiveColor: Colors.black38,
-                    // mouseCursor: MaterialStateMouseCursor.textable,
-                    label: darkProvider.sliderValue.toString(),
-                    value: darkProvider.sliderValue,
-                    onChanged: (val) {
-                      darkProvider.getSliderValue(val);
-                    }),
-              )
+                  divisions: 10,
+                  thumbColor: kPrimaryColor,
+                  activeColor: kPrimaryColor,
+                  inactiveColor: Colors.black38,
+                  // mouseCursor: MaterialStateMouseCursor.textable,
+                  label: (darkProvider.sliderValue).toInt().toString(),
+                  value: darkProvider.sliderValue / 1000,
+                  onChanged: (val) {
+                    darkProvider.getSliderValue(val * 1000);
+                  },
+                ),
+              ),
+              Text(
+                (darkProvider.sliderValue).toInt().toString(),
+                style: kFontCapitalStyle.copyWith(
+                  color: kPrimaryColor,
+                  fontSize: 30,
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * .15),
+              SizedBox(
+                width: 350,
+                height: 60,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      backgroundColor: kPrimaryColor),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => const SetTargetPage()));
+                  },
+                  child: const Text(
+                    "Set Limit",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: 350,
+                height: 60,
+                decoration: BoxDecoration(
+                  border: Border.all(width: 2, color: kPrimaryColor),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(30),
+                  ),
+                ),
+                child: const Center(
+                  child: Text(
+                    "History",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ),
             ],
           ),
         );
