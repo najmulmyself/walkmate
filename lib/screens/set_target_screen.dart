@@ -61,7 +61,6 @@ class SetTargetPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: Text(
-                        
                         "Set your walking goal now!",
                         // style: darkProvider.isModeDark
                         //     ? kFontSizeBigStyle
@@ -96,20 +95,37 @@ class SetTargetPage extends StatelessWidget {
                 "Add Your Target".toUpperCase(),
                 style: GoogleFonts.manrope(textStyle: kFontCapitalStyle),
               ),
-              SfSlider(
-                enableTooltip: true,
-                shouldAlwaysShowTooltip: true,
-                value: darkProvider.sliderValue,
-                interval: 0.2,
-                min: 0,
-                max: 10000,
-                thumbIcon: Image.asset("assets/images/Slider.png"),
-                showDividers: true,
-                dividerShape: const SfDividerShape(),
-                onChanged: (val) {
-                  darkProvider.getSliderValue(val);
-                },
-              ),
+              // SfSlider(
+              //   enableTooltip: true,
+              //   shouldAlwaysShowTooltip: true,
+              //   value: darkProvider.sliderValue,
+              //   interval: 0.2,
+              //   min: 0,
+              //   max: 10000,
+              //   thumbIcon: Image.asset("assets/images/Slider.png"),
+              //   showDividers: true,
+              //   dividerShape: const SfDividerShape(),
+              //   onChanged: (val) {
+              //     darkProvider.getSliderValue(val);
+              //   },
+              // ),
+
+              SliderTheme(
+                data: SliderThemeData(
+                 
+                ),
+                child: Slider(
+                    divisions: 10,
+                    thumbColor: kPrimaryColor,
+                    activeColor: kPrimaryColor,
+                    inactiveColor: Colors.black38,
+                    // mouseCursor: MaterialStateMouseCursor.textable,
+                    label: darkProvider.sliderValue.toString(),
+                    value: darkProvider.sliderValue,
+                    onChanged: (val) {
+                      darkProvider.getSliderValue(val);
+                    }),
+              )
             ],
           ),
         );
