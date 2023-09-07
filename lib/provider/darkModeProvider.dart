@@ -22,12 +22,5 @@ class DarkModeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  double _sliderValue = 500;
-
-  double get sliderValue => _sliderValue;
-
-  getSliderValue(double value) {
-    _sliderValue = value;
-    notifyListeners();
-  }
+ 
 }

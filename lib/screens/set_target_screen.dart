@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:walkmate/provider/darkModeProvider.dart';
+import 'package:walkmate/provider/dataProvider.dart';
 import 'package:walkmate/screens/step_tracking.dart';
 
 import '../utils/const.dart';
@@ -12,6 +13,7 @@ class SetTargetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dataProvider = Provider.of<DataProvider>(context, listen: false);
     return Consumer<DarkModeProvider>(
       builder: (context, darkProvider, chlid) {
         return Scaffold(
@@ -124,15 +126,15 @@ class SetTargetPage extends StatelessWidget {
                   activeColor: kPrimaryColor,
                   inactiveColor: Colors.black38,
                   // mouseCursor: MaterialStateMouseCursor.textable,
-                  label: (darkProvider.sliderValue).toInt().toString(),
-                  value: darkProvider.sliderValue / 1000,
+                  label: (dataProvider.sliderValue).toInt().toString(),
+                  value: dataProvider.sliderValue / 1000,
                   onChanged: (val) {
-                    darkProvider.getSliderValue(val * 1000);
+                    dataProvider.getSliderValue(val * 1000);
                   },
                 ),
               ),
               Text(
-                (darkProvider.sliderValue).toInt().toString(),
+                (dataProvider.sliderValue).toInt().toString(),
                 style: kFontCapitalStyle.copyWith(
                   color: kPrimaryColor,
                   fontSize: 30,
