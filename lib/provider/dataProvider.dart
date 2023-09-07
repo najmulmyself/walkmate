@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class DataProvider with ChangeNotifier {
   int totalstep = 0;
   double _sliderValue = 500;
+  int remainingStep = 0;
 
   double get sliderValue => _sliderValue;
 
@@ -61,7 +62,8 @@ class DataProvider with ChangeNotifier {
     }
   }
 
-  void getStep(String formattedDate) async {
+   getStep(String formattedDate) async {
+    totalstep = 0;
     final collection = _firestore.collection(formattedDate);
 
     try {
@@ -74,10 +76,11 @@ class DataProvider with ChangeNotifier {
       print("Error fetching data $error");
     }
   }
-  
-calculateStep(int step) {
-  totalstep = totalstep + step;
-}
+
+  calculateStep(int step) {
+    totalstep = totalstep + step;
+    remainingStep = (sliderValue - totalstep).toInt();
+  }
 }
 
 

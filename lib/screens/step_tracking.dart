@@ -5,10 +5,21 @@ import 'package:walkmate/provider/darkModeProvider.dart';
 import 'package:walkmate/provider/dataProvider.dart';
 import 'package:walkmate/utils/const.dart';
 
-class StepTracking extends StatelessWidget {
+class StepTracking extends StatefulWidget {
   static TextEditingController stepController = TextEditingController();
 
   const StepTracking({super.key});
+
+  @override
+  State<StepTracking> createState() => _StepTrackingState();
+}
+
+class _StepTrackingState extends State<StepTracking> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    
+  }
   @override
   Widget build(BuildContext context) {
     final dataProvider = Provider.of<DataProvider>(context, listen: false);
@@ -37,7 +48,7 @@ class StepTracking extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: Text(
-                      "Your Limit Daily is ${(dataProvider.sliderValue).toInt()} Step",
+                      "Your Limit Daily is ${(dataProvider.remainingStep)} Step",
                       // style: darkProvider.isModeDark
                       //     ? kFontSizeBigStyle
                       //     : kFontSizeBigStyle.copyWith(
@@ -86,7 +97,7 @@ class StepTracking extends StatelessWidget {
                       height: 70,
                       // color: kPrimaryColor,
                       child: TextField(
-                        controller: stepController,
+                        controller: StepTracking.stepController,
                         cursorColor: kPrimaryColor,
                         keyboardType: TextInputType.number,
                         showCursor: true,
@@ -124,8 +135,8 @@ class StepTracking extends StatelessWidget {
                             backgroundColor: kPrimaryColor),
                         onPressed: () {
                           dataProvider
-                              .addData(int.parse(stepController.value.text));
-                          stepController.clear();
+                              .addData(int.parse(StepTracking.stepController.value.text));
+                          StepTracking.stepController.clear();
                           dataProvider.getStep(dataProvider.getDateNow());
                         },
                         child: const Text(
@@ -213,7 +224,7 @@ class StepTracking extends StatelessWidget {
   // );
   @override
   void dispose() {
-    stepController.dispose(); // Dispose of the controller when done.
+    StepTracking.stepController.dispose(); // Dispose of the controller when done.
     // super.dispose();
   }
 }
