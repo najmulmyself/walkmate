@@ -39,6 +39,8 @@ dependencies:
   google_fonts: ^5.1.0
   shared_preferences: ^2.2.0
   syncfusion_flutter_sliders: ^22.2.11
+  cloud_firestore: ^4.9.1
+  firebase_core: ^2.15.1
 
 dev_dependencies:
   flutter_test:

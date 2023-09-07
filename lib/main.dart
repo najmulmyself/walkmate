@@ -1,14 +1,27 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:walkmate/provider/darkModeProvider.dart';
+import 'package:walkmate/provider/dataProvider.dart';
 import 'package:walkmate/screens/get_started.dart';
 
-void main() => runApp(
-      ChangeNotifierProvider(
-        create: (context) => DarkModeProvider(),
-        child: MyApp(),
-      ),
-    );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => DarkModeProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DataProvider(),
+        )
+      ],
+      child: MyApp(),
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});

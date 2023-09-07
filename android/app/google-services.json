@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "375759037885",
+    "project_id": "walkmate-ef852",
+    "storage_bucket": "walkmate-ef852.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:375759037885:android:a14c0ed8edb4f3417eded4",
+        "android_client_info": {
+          "package_name": "com.example.walkmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "375759037885-kos3upa1ps12b08l1bok1op169adoku3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMxI1B54Noq9kIHymEzYLCqQwQWhu_OqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "375759037885-kos3upa1ps12b08l1bok1op169adoku3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

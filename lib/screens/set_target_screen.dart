@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:walkmate/provider/darkModeProvider.dart';
 import 'package:walkmate/screens/step_tracking.dart';
 
@@ -152,7 +151,7 @@ class SetTargetPage extends StatelessWidget {
                     Navigator.push(
                         context,
                         CupertinoPageRoute(
-                            builder: (context) => const StepTracking()));
+                            builder: (context) => StepTracking()));
                   },
                   child: const Text(
                     "Set Limit",
