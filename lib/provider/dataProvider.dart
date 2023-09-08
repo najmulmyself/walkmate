@@ -3,13 +3,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DataProvider with ChangeNotifier {
   int totalstep = 0;
-  double _sliderValue = 500;
+  double _sliderValue = 0;
   int remainingStep = 0;
 
   double get sliderValue => _sliderValue;
 
+  DataProvider.test() {
+    getStep(getDateNow());
+  }
+
   getSliderValue(double value) {
     _sliderValue = value;
+    // getStep(getDateNow());
+
     notifyListeners();
   }
 
@@ -62,7 +68,7 @@ class DataProvider with ChangeNotifier {
     }
   }
 
-   getStep(String formattedDate) async {
+  getStep(String formattedDate) async {
     totalstep = 0;
     final collection = _firestore.collection(formattedDate);
 

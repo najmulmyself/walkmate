@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:walkmate/provider/darkModeProvider.dart';
 import 'package:walkmate/provider/dataProvider.dart';
 import 'package:walkmate/utils/const.dart';
 
 class StepTracking extends StatefulWidget {
-  static TextEditingController stepController = TextEditingController();
-
   const StepTracking({super.key});
 
   @override
@@ -15,14 +12,21 @@ class StepTracking extends StatefulWidget {
 }
 
 class _StepTrackingState extends State<StepTracking> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    
-  }
+  TextEditingController stepController = TextEditingController();
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   // getStep();
+  // }
+
   @override
   Widget build(BuildContext context) {
     final dataProvider = Provider.of<DataProvider>(context, listen: false);
+
+    void getStep() {
+      dataProvider.getStep(dataProvider.getDateNow());
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
@@ -32,7 +36,7 @@ class _StepTrackingState extends State<StepTracking> {
         child: Column(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * .3,
+              height: MediaQuery.of(context).size.height * .35,
               decoration: const BoxDecoration(
                 color: kPrimaryColor,
                 borderRadius: BorderRadius.only(
@@ -48,7 +52,7 @@ class _StepTrackingState extends State<StepTracking> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: Text(
-                      "Your Limit Daily is ${(dataProvider.remainingStep)} Step",
+                      "Your Limit Daily is ${(dataProvider.remainingStep)} Step away ",
                       // style: darkProvider.isModeDark
                       //     ? kFontSizeBigStyle
                       //     : kFontSizeBigStyle.copyWith(
@@ -97,7 +101,7 @@ class _StepTrackingState extends State<StepTracking> {
                       height: 70,
                       // color: kPrimaryColor,
                       child: TextField(
-                        controller: StepTracking.stepController,
+                        controller: stepController,
                         cursorColor: kPrimaryColor,
                         keyboardType: TextInputType.number,
                         showCursor: true,
@@ -135,8 +139,8 @@ class _StepTrackingState extends State<StepTracking> {
                             backgroundColor: kPrimaryColor),
                         onPressed: () {
                           dataProvider
-                              .addData(int.parse(StepTracking.stepController.value.text));
-                          StepTracking.stepController.clear();
+                              .addData(int.parse(stepController.value.text));
+                          stepController.clear();
                           dataProvider.getStep(dataProvider.getDateNow());
                         },
                         child: const Text(
@@ -224,7 +228,8 @@ class _StepTrackingState extends State<StepTracking> {
   // );
   @override
   void dispose() {
-    StepTracking.stepController.dispose(); // Dispose of the controller when done.
+    // super.dispose();
+    stepController.dispose(); // Dispose of the controller when done.
     // super.dispose();
   }
 }
