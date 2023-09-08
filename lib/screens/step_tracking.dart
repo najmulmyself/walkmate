@@ -207,7 +207,7 @@ class _StepTrackingState extends State<StepTracking> {
                                   title: Text('Step: ${item['number']}'),
                                   subtitle: Text('Time: ${item['time']}'),
                                   trailing:
-                                      Text(dataProvider.totalstep.toString()),
+                                      Text(dataProvider.totalStep.toString()),
                                 );
                               },
                             ),

@@ -14,6 +14,7 @@ class SetTargetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dataProvider = Provider.of<DataProvider>(context, listen: false);
+    print(dataProvider.remainingStep);
     return Consumer<DarkModeProvider>(
       builder: (context, darkProvider, chlid) {
         return Scaffold(
@@ -103,21 +104,6 @@ class SetTargetPage extends StatelessWidget {
                         color: kPrimaryColor,
                       ),
               ),
-              // SfSlider(
-              //   enableTooltip: true,
-              //   shouldAlwaysShowTooltip: true,
-              //   value: darkProvider.sliderValue,
-              //   interval: 0.2,
-              //   min: 0,
-              //   max: 10000,
-              //   thumbIcon: Image.asset("assets/images/Slider.png"),
-              //   showDividers: true,
-              //   dividerShape: const SfDividerShape(),
-              //   onChanged: (val) {
-              //     darkProvider.getSliderValue(val);
-              //   },
-              // ),
-
               SliderTheme(
                 data: const SliderThemeData(),
                 child: Slider(
@@ -150,10 +136,11 @@ class SetTargetPage extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(30))),
                       backgroundColor: kPrimaryColor),
                   onPressed: () {
+                    dataProvider.getStep(dataProvider.getDateNow());
                     Navigator.push(
                         context,
                         CupertinoPageRoute(
-                            builder: (context) => StepTracking()));
+                            builder: (context) => const StepTracking()));
                   },
                   child: const Text(
                     "Set Limit",

@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DataProvider with ChangeNotifier {
-  int totalstep = 0;
+  int _totalstep = 0;
+  int get totalStep => _totalstep;
   double _sliderValue = 0;
   int remainingStep = 0;
 
   double get sliderValue => _sliderValue;
 
   DataProvider.test() {
-    getStep(getDateNow());
+    // getStep(getDateNow());
   }
 
   getSliderValue(double value) {
@@ -69,7 +70,7 @@ class DataProvider with ChangeNotifier {
   }
 
   getStep(String formattedDate) async {
-    totalstep = 0;
+    _totalstep = 0;
     final collection = _firestore.collection(formattedDate);
 
     try {
@@ -84,8 +85,9 @@ class DataProvider with ChangeNotifier {
   }
 
   calculateStep(int step) {
-    totalstep = totalstep + step;
-    remainingStep = (sliderValue - totalstep).toInt();
+    _totalstep = _totalstep + step;
+    remainingStep = (sliderValue - _totalstep).toInt();
+    notifyListeners();
   }
 }
 
