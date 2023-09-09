@@ -156,7 +156,7 @@ class SetTargetPage extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  notificationProvider.sendTestNotification();
+                  notificationProvider.showCongratulatoryNotification();
                 },
                 child: Container(
                   width: 350,
