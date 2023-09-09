@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:walkmate/provider/darkModeProvider.dart';
 import 'package:walkmate/provider/dataProvider.dart';
+import 'package:walkmate/provider/notificationProvider.dart';
 import 'package:walkmate/screens/get_started.dart';
 
 void main() async {
@@ -15,6 +16,9 @@ void main() async {
           create: (context) => DarkModeProvider(),
         ),
         ChangeNotifierProvider(create: (context) => DataProvider.test()),
+        ChangeNotifierProvider(
+          create: (context) => NotificationProvider(),
+        )
       ],
       child: MyApp(),
     ),

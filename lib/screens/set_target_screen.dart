@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:walkmate/provider/darkModeProvider.dart';
 import 'package:walkmate/provider/dataProvider.dart';
+import 'package:walkmate/provider/notificationProvider.dart';
 import 'package:walkmate/screens/step_tracking.dart';
 
 import '../utils/const.dart';
@@ -14,6 +15,8 @@ class SetTargetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dataProvider = Provider.of<DataProvider>(context, listen: false);
+    final notificationProvider =
+        Provider.of<NotificationProvider>(context, listen: false);
     print(dataProvider.remainingStep);
     return Consumer<DarkModeProvider>(
       builder: (context, darkProvider, chlid) {
@@ -151,19 +154,24 @@ class SetTargetPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                width: 350,
-                height: 60,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: kPrimaryColor),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(30),
+              InkWell(
+                onTap: () {
+                  notificationProvider.sendTestNotification();
+                },
+                child: Container(
+                  width: 350,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 2, color: kPrimaryColor),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(30),
+                    ),
                   ),
-                ),
-                child: const Center(
-                  child: Text(
-                    "History",
-                    style: TextStyle(fontSize: 20),
+                  child: const Center(
+                    child: Text(
+                      "History",
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
                 ),
               ),
