@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationProvider with ChangeNotifier {
@@ -9,7 +8,7 @@ class NotificationProvider with ChangeNotifier {
   // Initialize notifications in the constructor
   NotificationProvider() {
     var initializationSettingsAndroid =
-        const AndroidInitializationSettings('app_icon');
+        const AndroidInitializationSettings('ic_launcher.png');
     // var initializationSettingsIOS = IOSInitializationSettings();
     var initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
@@ -31,7 +30,8 @@ class NotificationProvider with ChangeNotifier {
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
       'your_channel_id',
       'your_channel_name',
-      // 'your_channel_description',
+      //  'your_channel_description',
+
       importance: Importance.max,
       priority: Priority.high,
     );
