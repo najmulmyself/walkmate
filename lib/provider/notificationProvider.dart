@@ -8,7 +8,7 @@ class NotificationProvider with ChangeNotifier {
   // Initialize notifications in the constructor
   NotificationProvider() {
     var initializationSettingsAndroid =
-        const AndroidInitializationSettings('ic_launcher.png');
+        const AndroidInitializationSettings('launch_background');
     // var initializationSettingsIOS = IOSInitializationSettings();
     var initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
