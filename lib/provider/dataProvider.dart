@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
+import 'package:walkmate/provider/notificationProvider.dart';
 
 class DataProvider with ChangeNotifier {
+  BuildContext context;
+
+  DataProvider(this.context);
   int _totalstep = 0;
   int get totalStep => _totalstep;
   double _sliderValue = 0;
@@ -9,9 +14,7 @@ class DataProvider with ChangeNotifier {
 
   double get sliderValue => _sliderValue;
 
-  DataProvider.test() {
-    // getStep(getDateNow());
-  }
+
 
   getSliderValue(double value) {
     _sliderValue = value;
@@ -88,6 +91,13 @@ class DataProvider with ChangeNotifier {
     _totalstep = _totalstep + step;
     remainingStep = (sliderValue - _totalstep).toInt();
     notifyListeners();
+  }
+
+  congratulate() {
+    final notificationP = Provider.of<NotificationProvider>(context);
+    if (remainingStep == 0) {
+      notificationP.showCongratulatoryNotification();
+    }
   }
 }
 

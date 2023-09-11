@@ -15,9 +15,9 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => DarkModeProvider(),
         ),
-        ChangeNotifierProvider(create: (context) => DataProvider.test()),
+        ChangeNotifierProvider(create: (context) => DataProvider(context)),
         ChangeNotifierProvider(
-          create: (context) => NotificationProvider(),
+          create: (context) => NotificationProvider(context),
         )
       ],
       child: MyApp(),

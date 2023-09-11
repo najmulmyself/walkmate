@@ -22,6 +22,7 @@ class _StepTrackingState extends State<StepTracking> {
   @override
   Widget build(BuildContext context) {
     final dataProvider = Provider.of<DataProvider>(context, listen: false);
+    dataProvider.congratulate();
 
     void getStep() {
       dataProvider.getStep(dataProvider.getDateNow());
