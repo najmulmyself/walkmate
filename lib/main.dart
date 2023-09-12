@@ -15,10 +15,14 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => DarkModeProvider(),
         ),
-        ChangeNotifierProvider(create: (context) => DataProvider(context)),
         ChangeNotifierProvider(
           create: (context) => NotificationProvider(context),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DataProvider(
+            notificationProvider: context.read<NotificationProvider>(),
+          ),
+        ),
       ],
       child: MyApp(),
     ),

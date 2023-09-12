@@ -4,17 +4,15 @@ import 'package:provider/provider.dart';
 import 'package:walkmate/provider/notificationProvider.dart';
 
 class DataProvider with ChangeNotifier {
-  BuildContext context;
+  final NotificationProvider notificationProvider;
 
-  DataProvider(this.context);
+  DataProvider({required this.notificationProvider});
   int _totalstep = 0;
   int get totalStep => _totalstep;
   double _sliderValue = 0;
   int remainingStep = 0;
 
   double get sliderValue => _sliderValue;
-
-
 
   getSliderValue(double value) {
     _sliderValue = value;
@@ -94,9 +92,9 @@ class DataProvider with ChangeNotifier {
   }
 
   congratulate() {
-    final notificationP = Provider.of<NotificationProvider>(context);
     if (remainingStep == 0) {
-      notificationP.showCongratulatoryNotification();
+      // here notification provider code will go or show contratulate func will call;
+      notificationProvider.showCongratulatoryNotification();
     }
   }
 }
